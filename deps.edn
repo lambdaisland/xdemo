@@ -1,3 +1,10 @@
-{:deps {net.cgrand/xforms {:mvn/version "0.18.1"}
-        redux             {:mvn/version "0.1.4"}
-        kixi/stats        {:mvn/version "0.4.0"}}}
+{:deps {net.cgrand/xforms    {:mvn/version "0.18.1"}
+        redux                {:mvn/version "0.1.4"}
+        kixi/stats           {:mvn/version "0.4.0"}
+        org.clojure/data.csv {:mvn/version "0.1.4"}}
+ :paths ["src" "resources"]
+ :aliases
+ {:dev
+  {:extra-paths ["dev"]
+   :extra-deps  {com.cemerick/pomegranate     {:mvn/version "1.0.0"}
+                 org.clojure/tools.deps.alpha {:mvn/version "0.5.417"}}}}}
