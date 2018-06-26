@@ -1,7 +1,8 @@
-{:deps {net.cgrand/xforms    {:mvn/version "0.18.1"}
-        redux                {:mvn/version "0.1.4"}
-        kixi/stats           {:mvn/version "0.4.0"}
-        org.clojure/data.csv {:mvn/version "0.1.4"}}
+{:deps  {net.cgrand/xforms       {:mvn/version "0.18.1"}
+         redux                   {:mvn/version "0.1.4"}
+         kixi/stats              {:mvn/version "0.4.0"}
+         org.clojure/data.csv    {:mvn/version "0.1.4"}
+         com.hypirion/clj-xchart {:mvn/version "0.2.0"}}
  :paths ["src" "resources"]
  :aliases
  {:dev
