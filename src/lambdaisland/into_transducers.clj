@@ -169,3 +169,41 @@ reduce
 
 (x/transjuxt [x/min x/max (x/reduce +)] [1 10 100])
 ;; => [1 100 111]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;; Summary
+
+;; step-function (use with clojure.core/reduce)
+(fn [acc x]
+  ,,,)
+
+;; Reducing function (use with transduce, xforms/reduce)
+(fn
+  ([] init)
+  ([acc] completion)
+  ([acc x]
+   ...step...))
+
+;; Reducer
+(fn [rf]
+  (fn
+    ([] (rf))
+    ([acc] (rf acc))
+    ([acc x] (rf acc x) ...)))
+
+
+
+(defn button [xs]
+  `[:div ~@xs])
