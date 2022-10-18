@@ -46,7 +46,7 @@ data
  ,,,]
 
 
-;;
+;; Get some stats about each parameter
 (x/transjuxt (into {} (map (juxt identity #(comp (map %) (x/reduce stats/summary)))) attrs) data)
 
 ;; Let's have a look at what we have
@@ -109,20 +109,24 @@ data
 ;; Lets have a look at that data!
 
 (comment
-  (xchart/view
-   (xchart/xy-chart
-    {"Abalones" (xchart/extract-series
-                 {:x :diameter
-                  :y :rings}
-                 data)
-     "Linear model" {:x [0 1]
-                     :y [(first coefficients) (predict coefficients 1)]
-                     :style {:render-style :line
-                             :marker-type :none}}}
-    {:title "Abalone size and amount of rings"
-     :x-axis {:decimal-pattern "##.## mm"}
-     :render-style :scatter})))
-
+  (let [chart (xchart/xy-chart
+               {"Abalones" (xchart/extract-series
+                            {:x :diameter
+                             :y :rings}
+                            data)
+                "Linear model" {:x [0 1]
+                                :y [(first coefficients) (predict coefficients 1)]
+                                :style {:render-style :line
+                                        :marker-type :none}}}
+               {:title "Abalone size and amount of rings..."
+                :x-axis {:decimal-pattern "##.## mm"}
+                :render-style :scatter})]
+    (xchart/spit chart "/tmp/chart2.png")
+    (java.nio.file.Files/copy (.toPath (io/file "/tmp/chart2.png"))
+                              (.toPath (io/file "/tmp/chart.png"))
+                              (into-array java.nio.file.CopyOption [java.nio.file.StandardCopyOption/REPLACE_EXISTING]))
+    #_
+    (xchart/view))
 
 ;; In this case I picked diameter since it seemed intuitively to be a good
 ;; predictor of age, but lets have a look which other attributes could serve.
